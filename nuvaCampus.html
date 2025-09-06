@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>nuvaCampus 校園大使計畫｜成為 AI 新世代的領航者</title>
+  <meta name="description" content="加入 nuva 校園大使：AI × 軟實力培訓、全台校園巡迴、AI 戰鬥營助教。用一年的時間，打造你的 AI 影響力旅程。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com">
+  // 內部連結平滑滾動（ease-in-out）
+  (function(){
+    const easeInOutCubic = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const DURATION = 600; // 毫秒
+    const header = document.querySelector('header');
+    function smoothScrollTo(targetY){
+      const startY = window.pageYOffset;
+      const diff = targetY - startY;
+      const start = performance.now();
+      function step(now){
+        const t = Math.min(1, (now - start) / DURATION);
+        window.scrollTo(0, startY + diff * easeInOutCubic(t));
+        if(t < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(!href || href === '#') return; // 忽略空錨點
+        const target = document.querySelector(href);
+        if(!target) return;
+        e.preventDefault();
+        const offset = header ? header.offsetHeight : 0;
+        const rect = target.getBoundingClientRect();
+        const targetY = window.pageYOffset + rect.top - offset - 8; // 略為往上留白
+        smoothScrollTo(targetY);
+        history.pushState(null, '', href); // 更新網址但不跳動
+      });
+    });
+  })();
+</script>
+  <style>
+    :root{
+      --blue:#4378b9;        /* 主色 */
+      --yellow:#ffbd59;      /* 次要重點 */
+      --red:#ff5757;         /* 強調色 */
+      --white:#fefefe;       /* 白底 */
+      --black:#000000;       /* 黑字 */
+      --muted:#5b6675;       /* 次要文字 */
+      --divider:#e5e7eb;     /* 邊框色 */
+    }
+    body{font-family:"GenSenRounded","Noto Sans TC", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background-color:var(--white);
+      color:var(--black);
+      letter-spacing:0.05em;     /* 近似 字距 100 */
+      line-height:1.7;           /* 內文行距 1.7 */
+    }
+    h1,h2,h3,h4,h5,h6{line-height:1.5;} /* 大標行距 1.5 */
+    h2.section-title{line-height:1.2;}    /* 中標行距 1.2 */
+
+    /* 元件 */
+    .btn{transition:transform .12s ease, box-shadow .2s ease}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background-color:var(--blue); color:var(--white);}
+    .btn-secondary{background-color:transparent; color:var(--blue); border:1px solid var(--blue);}
+    .btn-contrast{background-color:var(--white); color:var(--blue);}
+    .btn-danger{background-color:var(--red); color:var(--white);}
+    .chip{background:var(--yellow); color:var(--black);}
+    .card{background-color:var(--white); border:1px solid var(--divider);}
+    .card-on-blue{background-color:#ffffff; border:0; box-shadow:0 8px 24px rgba(0,0,0,.08)}
+    .link{color:var(--blue)}
+
+    /* 區塊底色：白 / 藍 交錯 */
+    .section-white{background-color:var(--white); color:var(--black);}
+    .section-blue{background-color:var(--blue); color:var(--white);}
+    .section-blue .muted{color:rgba(255,255,255,.85)}
+
+    /* 導航 */
+    .nav{backdrop-filter:saturate(180%) blur(8px)}
+    .nav a{color:#111 !important; font-weight:300}
+    .nav a:hover{color:#ffffff}
+
+    /* 中英之間自動加空格：在常見標點與中英文交界插入窄空白（視覺優化）*/
+    .spaced{ }
+  
+    /* 手機置中文字＆按鈕置中 */
+    @media (max-width: 640px){
+      .m-center{ text-align:center; }
+      .m-center .chip, .m-center .btn{ margin-left:auto; margin-right:auto; }
+      .actions{ justify-content:center; }
+    }
+  
+    /* 雜誌風垂直時間軸 */
+    .timeline{margin-top:1.5rem}
+    .t-item{display:grid;grid-template-columns:minmax(220px,0.9fr) 1.1fr;gap:24px;align-items:start;margin:72px 0}
+    .t-date{font-weight:900;letter-spacing:.02em;line-height:.9;color:rgba(255,255,255,.28);text-align:right;padding-right:40px;opacity:.35;transform:translateY(6px);transition:opacity .5s ease,color .5s ease,transform .6s cubic-bezier(.22,1,.36,1);}
+    .t-date .y{display:block;font-size:clamp(32px,8vw,88px)}
+    .t-date .md{display:block;font-size:clamp(28px,7vw,72px);opacity:.95}
+    .t-card{background:#fff;border:1px solid var(--divider);border-radius:1.25rem;padding:20px 24px;box-shadow:0 8px 24px rgba(0,0,0,.08);color:#111;margin-left:40px;opacity:.85;transform:translateY(8px);transition:opacity .6s ease,box-shadow .4s ease,border-color .4s ease,transform .6s cubic-bezier(.22,1,.36,1);}
+    .t-card h3{font-weight:800;color:var(--blue)}
+    .t-card p{opacity:.95}
+    @media (max-width:1024px){
+      .t-item{grid-template-columns:1fr;margin:48px 0}
+      .t-date{order:-1;text-align:center}
+    }
+  
+    /* 中線＋捲動指示器（時間軸） */
+    .timeline{position:relative;margin-top:1.5rem}
+    .timeline::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;transform:translateX(-1px);background:rgba(255,255,255,.28)}
+    .t-marker{position:sticky;top:40vh;left:50%;transform:translate(-50%,-50%);width:14px;height:14px;border-radius:9999px;background:#fff;border:2px solid var(--blue);box-shadow:0 0 0 6px rgba(255,255,255,.35);z-index:2;margin-top:-7px}
+
+    .t-item{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin:72px 0}
+    .t-date{font-weight:900;letter-spacing:.02em;line-height:.9;color:rgba(255,255,255,.28);text-align:right;padding-right:40px}
+    .t-date .ym{display:block;font-size:clamp(48px,10vw,140px)}
+    .t-card{background:#fff;border:1px solid var(--divider);border-radius:1.25rem;padding:20px 24px;box-shadow:0 8px 24px rgba(0,0,0,.08);color:#111;margin-left:40px}
+    .t-card h3{font-weight:800;color:var(--blue)}
+    .timeline .t-item.active .t-date{color:rgba(255,255,255,.9);opacity:1;transform:translateY(0);}
+    .timeline .t-item.active .t-card{border-color:var(--blue);box-shadow:0 12px 32px rgba(0,0,0,.12);opacity:1;transform:translateY(0);}
+
+    @media (max-width:1024px){
+      .t-item{grid-template-columns:1fr;margin:48px 0}
+      .t-date{order:-1;text-align:center;padding-right:0}
+      .t-card{margin-left:0}
+    }
+  
+    @media (prefers-reduced-motion: reduce){.t-date,.t-card{transition:none !important;}}
+  
+
+  /* === Timeline progressive fade/translate + larger spacing === */
+  .timeline .t-item{ --vis: 0; }
+  .t-date{ opacity: calc(.12 + var(--vis)*.88); transform: translateY(calc(8px - var(--vis)*8px)); transition: opacity .6s ease, color .35s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+  .t-card{ opacity: calc(.7 + var(--vis)*.3); transform: translateY(calc(10px - var(--vis)*10px)); transition: opacity .6s ease, border-color .4s ease, box-shadow .4s ease, transform .6s cubic-bezier(.22,1,.36,1); }
+  .t-card h3{ margin-bottom: .9rem; letter-spacing:.01em; }
+  .t-card p{ margin-top: .9rem; letter-spacing:.02em; line-height:1.85; }
+  .t-card p + p{ margin-top: 1rem; }
+
+
+    .tabular-nums{font-variant-numeric:tabular-nums}
+
+  
+    /* 發光 CTA 按鈕 */
+    .glow-btn{background:#fff;color:var(--blue);box-shadow:0 0 0 0 rgba(67,120,185,.0),0 0 24px rgba(67,120,185,.35);animation:glowPulse 2.2s ease-in-out infinite}
+    @keyframes glowPulse{0%{box-shadow:0 0 0 0 rgba(67,120,185,.0),0 0 20px rgba(67,120,185,.35)}50%{box-shadow:0 0 0 14px rgba(67,120,185,0),0 0 44px rgba(67,120,185,.6)}100%{box-shadow:0 0 0 0 rgba(67,120,185,0),0 0 20px rgba(67,120,185,.35)}}
+  
+    #timeline.section-blue{ background-color:#5f8cc9; }
+    /* 發光 CTA 尺寸：佔寬 1/5 */
+    .cta-big{ width:20vw; min-width:260px; text-align:center; font-size:clamp(1.75rem,3vw,3rem); padding:clamp(1rem,1.2vw,1.5rem) clamp(1.5rem,2vw,2rem); }
+  
+    /* 本地字體：GenSenRounded (放在根目錄) */
+    @font-face{font-family:"GenSenRounded";src:url("GenSenRounded-EL.ttc") format("truetype");font-weight:200;font-style:normal;font-display:swap}
+    @font-face{font-family:"GenSenRounded";src:url("GenSenRounded-L.ttc") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+    @font-face{font-family:"GenSenRounded";src:url("GenSenRounded-R.ttc") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:"GenSenRounded";src:url("GenSenRounded-M.ttc") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:"GenSenRounded";src:url("GenSenRounded-B.ttc") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:"GenSenRounded";src:url("GenSenRounded-H.ttc") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+
+    /* Timeline 卡片透明度與左側日期一致 */
+    .t-card{ opacity: calc(.12 + var(--vis)*.88); }
+
+    /* 音樂切換按鈕 */
+    .audio-toggle{position:fixed;right:1rem;bottom:1rem;width:44px;height:44px;border-radius:9999px;background:rgba(255,255,255,.9);border:1px solid var(--divider);display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.12);cursor:pointer;z-index:50}
+  </style>
+</head>
+<body class="spaced">
+  <!-- NAV -->
+  <header class="nav sticky top-0 z-40 bg-white/80 border-b border-gray-200">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="#top" class="flex items-center gap-3">
+          <div class="h-8 w-8 rounded-xl bg-[var(--blue)] grid place-items-center">
+            <span class="text-white font-black">n</span>
+          </div>
+          <span class="font-extrabold tracking-tight text-[var(--black)]">nuvaCampus</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#why">為什麼加入</a>
+          <a href="#who">適合誰</a>
+          <a href="#timeline">計畫流程</a>
+          <a href="#apply">報名方式</a>
+          <a href="#faq">FAQ</a>
+          
+          <a href="https://tally.so/r/meWY5k" target="_blank" class="ml-4 btn btn-primary px-4 py-2 rounded-xl font-semibold">立即報名</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. HERO：白底 -->
+  <section id="top" class="section-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 pt-16 pb-12">
+      <div class="max-w-3xl m-center">
+        <span class="inline-flex items-center gap-2 chip px-3 py-1 rounded-full text-xs font-medium">
+          114 學年度 nuva 校園大使 · 第一屆
+        </span>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-black tracking-tight">校園大使計畫：成為 AI 新世代的領航者</h1>
+        <p class="mt-4 text-lg text-[var(--muted)]">加入 nuva 校園大使，接受 <span class="font-semibold text-[var(--blue)]">AI 與軟實力培訓</span>，參與全台校園巡迴，擔任 <span class="font-semibold text-[var(--blue)]">AI 戰鬥營助教</span>。用一年打造你的影響力旅程。</p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 actions sm:justify-start items-center sm:items-stretch">
+          <a href="https://tally.so/r/meWY5k" target="_blank" class="btn btn-primary px-6 py-3 rounded-2xl font-bold">立即報名</a>
+          <a href="#timeline" class="btn btn-secondary px-6 py-3 rounded-2xl font-semibold">查看計畫流程</a>
+        </div>
+        <div class="hidden mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div class="card p-4 rounded-2xl text-center"><div class="text-2xl font-extrabold">14+</div><div class="text-sm text-[var(--muted)]">大專院校專題演講</div></div>
+          <div class="card p-4 rounded-2xl text-center"><div class="text-2xl font-extrabold">18+</div><div class="text-sm text-[var(--muted)]">企業導入案例</div></div>
+          <div class="card p-4 rounded-2xl text-center"><div class="text-2xl font-extrabold">43+</div><div class="text-sm text-[var(--muted)]">官方工作坊</div></div>
+          <div class="card p-4 rounded-2xl text-center"><div class="text-2xl font-extrabold">4,200+</div><div class="text-sm text-[var(--muted)]">台日港學員</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. WHY：藍底 -->
+  <section id="why" class="section-blue">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <div>
+        <h2 class="section-title text-3xl font-black">為什麼加入 nuva 校園大使？</h2>
+        <p class="mt-3 opacity-95">把 AI 變成行動力，把履歷變成王牌。<br>不是只學工具，你會帶隊做專案、上台發聲、影響同儕。</p>
+        <div class="my-6 opacity-60">⸻</div>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+          <div class="card-on-blue rounded-2xl p-6">
+            <h3 class="font-bold text-[var(--blue)]">你會做什麼</h3>
+            <ul class="mt-3 space-y-2 text-black/85">
+              <li>在校園巡迴與戰鬥營擔任推廣者＆隊長</li>
+              <li>帶領同學完成「AI 超級助理」實作</li>
+              <li>和團隊一起讓 300 位學員走完實戰</li>
+            </ul>
+          </div>
+          <div class="card-on-blue rounded-2xl p-6">
+            <h3 class="font-bold text-[var(--blue)]">你會拿到什麼</h3>
+            <ul class="mt-3 space-y-2 text-black/85">
+              <li>可展示的 AI 專案（面試直接拿出來講）</li>
+              <li>完訓證書＋推薦信（履歷、LinkedIn 立即加分）</li>
+              <li>企業導師資源＋跨校社群（有人脈、大家一起衝）</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-on-blue rounded-2xl p-6 mt-8">
+          <h3 class="font-bold text-[var(--blue)]">你的舞台</h3>
+          <p class="mt-3 text-black/85">你不是參加者，你是主角。你會企劃、教學、宣傳，把影響力擴到整個校園。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. WHO：白底 -->
+  <section id="who" class="section-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <h2 class="section-title text-3xl font-black">這計畫適合誰？</h2>
+      <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card rounded-2xl p-6"><h3 class="font-bold">想留下不一樣足跡的你</h3><p class="mt-2 text-[var(--muted)]">把 AI 與影響力寫進你的大學履歷。</p></div>
+        <div class="card rounded-2xl p-6"><h3 class="font-bold">喜歡學習與分享的你</h3><p class="mt-2 text-[var(--muted)]">成為校園的 AI 影響者，帶動同儕行動。</p></div>
+        <div class="card rounded-2xl p-6"><h3 class="font-bold">對 AI 好奇的你</h3><p class="mt-2 text-[var(--muted)]">把 AI 用在課業、社團、專案與職涯規劃。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TIMELINE：藍底 -->
+  <section id="timeline" class="section-blue">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <h2 class="section-title text-3xl font-black">計畫流程（2025 → 2026）</h2>
+      <p class="mt-3 opacity-90">學習 → 行動 → 職涯銜接。從第一天按下開始，到最後一天站上台，你都不會是一個人。</p>
+
+      <div class="timeline">
+        <div class="t-marker" aria-hidden="true"></div>
+        <!-- 10/23 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2025 10</span></div>
+          <div class="t-card">
+            <h3>10/23｜線上開訓典禮</h3>
+            <p>你正式踏進一個會改變履歷、也改變習慣的旅程。我們一起確認目標、找到同伴、開始這一年的旅程。</p>
+          </div>
+        </div>
+        <!-- 10/26 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2025 10</span></div>
+          <div class="t-card">
+            <h3>10/26｜第一場工作坊（@ 北科大，實體）</h3>
+            <p>你會遇到卡關與突破，會在桌邊討論與彼此的鼓勵裡，感受到學習的快感：原來，會用 AI 的人，長這樣。</p>
+          </div>
+        </div>
+        <!-- 2025/11–2026/3 → 顯示開始月份 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2025 11</span></div>
+          <div class="t-card">
+            <h3>2025/11–2026/3｜AI × 軟實力培訓（三場｜線上直播＋台北實體）</h3>
+            <p>技巧要練，軟實力更要練。我們用三場循序漸進的培訓，把 Prompt、流程設計、簡報溝通、帶班技巧全部補齊。線上讓你反覆演練，實體讓你在真實場域試錯；每一次結束，都能看見自己更穩、更會帶人。</p>
+          </div>
+        </div>
+        <!-- 2026/2–4 → 顯示開始月份 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2026 02</span></div>
+          <div class="t-card">
+            <h3>2026/2–4｜nuva 全國校園巡迴</h3>
+            <p>學會了，接著讓更多人看見。你會和社團、系學會對接，設計貼文與講座，走進不同教室分享你的實戰經驗。每一張海報、每一場說明會背後，都是你把影響力擴散出去的足跡。</p>
+          </div>
+        </div>
+        <!-- 2026/4/21–5/15 → 顯示開始月份 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2026 04</span></div>
+          <div class="t-card">
+            <h3>2026/4/21–5/15｜全台巡迴 15 場（觸及 4,500 位學生）</h3>
+            <p>十五場、四千五百人，這不是數字，這是你帶起的浪潮。不同城市、不同故事，但同樣的專注：讓更多同學真的動手做出來。你與上哲一起在場上場下參與巡迴。</p>
+          </div>
+        </div>
+        <!-- 2026/7/2–7/18 → 顯示開始月份 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2026 07</span></div>
+          <div class="t-card">
+            <h3>2026/7/2–7/18｜校園 AI 英雄之旅（15 天線上直播學習｜台北實體成果發表）</h3>
+            <p>連續十五天，我們在雲端帶著全國的大學生一起打怪練功；最後一天，回到台北把成果亮給世界看。你會將這一年所學的 n8n 自動化等實用技能，以 1:10 助教身分帶班衝線。當螢幕那頭傳來同學的「我成功了！」，你會知道，你已經不是當初的你。</p>
+          </div>
+        </div>
+        <!-- 2026/8–9 → 顯示開始月份 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2026 08</span></div>
+          <div class="t-card">
+            <h3>2026/8–9｜職涯銜接（職涯分享會、企業參訪）</h3>
+            <p>把一年累積轉換成職涯資本：走進企業，理解實作如何對應到職缺；在分享會中校正方向。你的履歷、LinkedIn、作品集，會因為這段旅程變得立體又有說服力。</p>
+          </div>
+        </div>
+        <!-- 2026/9 -->
+        <div class="t-item">
+          <div class="t-date"><span class="ym">2026 09</span></div>
+          <div class="t-card">
+            <h3>9 月｜校園大使結業典禮</h3>
+            <p>最後一次集合，但不是結束。你把證書與推薦信收進包包，也把夥伴與故事帶進下一段路。當主持人喊出你的名字，你會想起十個月前那個按下「報名」的自己——謝謝你勇敢出發，接下來，換你帶領更多人出發。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BENEFITS：白底 -->
+  <section id="benefits" class="section-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <h2 class="section-title text-3xl font-black">你將獲得</h2>
+      <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="card rounded-2xl p-6"><div class="text-xl font-bold text-[var(--blue)]">專案實戰</div><p class="mt-2 text-[var(--muted)]">AI 超級助理專案，從需求到上線。</p></div>
+        <div class="card rounded-2xl p-6"><div class="text-xl font-bold text-[var(--blue)]">履歷加值</div><p class="mt-2 text-[var(--muted)]">助教、巡迴推廣、推薦信。</p></div>
+        <div class="card rounded-2xl p-6"><div class="text-xl font-bold text-[var(--blue)]">跨校網絡</div><p class="mt-2 text-[var(--muted)]">與 16 校大使共學，拓展人脈。</p></div>
+        <div class="card rounded-2xl p-6"><div class="text-xl font-bold text-[var(--blue)]">結業證書</div><p class="mt-2 text-[var(--muted)]">完整參與者頒發官方證書。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. APPLY：藍底 -->
+  <section id="apply" class="section-blue">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <div class="grid lg:grid-cols-1 gap-10">
+        <div>
+          <h2 class="section-title text-3xl font-black">報名資格</h2>
+          <ol class="mt-6 grid sm:grid-cols-2 gap-8 list-decimal pl-6 text-3xl font-extrabold opacity-95">
+            <li>現在是大學生</li>
+            <li>確認第一條符合</li>
+          </ol>
+          <div class="mt-6 p-5 card-on-blue rounded-2xl">
+            <h3 class="font-bold text-[var(--blue)]">招募時程</h3>
+            <p class="mt-2 text-black/80">倒數至 <span class="font-semibold">9/24 中午 12:00</span> 徵件截止</p>
+            <div id="countdown" class="mt-3 text-3xl sm:text-4xl font-extrabold text-[var(--blue)] tabular-nums"></div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. FAQ：白底 -->
+  <section id="faq" class="section-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16">
+      <h2 class="section-title text-3xl font-black">常見問題 FAQ</h2>
+      <div class="mt-6 grid lg:grid-cols-2 gap-6">
+        <div class="space-y-4">
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">需要 AI 背景嗎？</summary><p class="mt-2 text-[var(--muted)]">Nope！AI 的技巧上哲會親手從零帶你到能上場，真的不需要先會。好奇心和行動力就夠了。</p></details>
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">活動衝堂怎麼辦？</summary><p class="mt-2 text-[var(--muted)]">先顧學業，這點我比什麼都還在乎。遇到衝堂請提早說，我們會提供線上回看／補交任務等各種方式。資格都在，你不是一個人在努力。</p></details>
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">助教任務會不會太重？</summary><p class="mt-2 text-[var(--muted)]">不會讓你單兵作戰。有教案、流程、SOP，現場也有帶隊和夥伴。平時步調輕，活動期會熱血一點，但那是有成就感的忙。</p></details>
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">大一、大二可以參加嗎？</summary><p class="mt-2 text-[var(--muted)]">可以。我要的是眼神有光、願意為自己努力、想影響他人的大學生，幾年級不重要。只要你想，我們就給你舞台。</p></details>
+        </div>
+        <div class="space-y-4">
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">會提供交通補助嗎？</summary><p class="mt-2 text-[var(--muted)]">會，台鐵實報實銷。活動相關移動憑票據報銷即可（記得留票根）；不亂報、不多報，大家彼此信任，有需要就補你。</p></details>
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">如何拿到推薦信／企業參訪名額？</summary><p class="mt-2 text-[var(--muted)]">把事情做到位、做漂亮。達到 80% 參與、完成任務與帶班、交出行動／成效報告，就具備資格（如果只要是校園大使就有推薦信的話，反而會失去鑒別度～）。</p></details>
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">對履歷有什麼幫助？</summary><div class="mt-2 text-[var(--muted)] space-y-2"><p>不是「聽過 AI」，而是做過、帶過、上過線。你會有：</p><ul class="list-disc list-inside space-y-1"><li>可展示的 AI 超級助理作品（從需求到上線）</li><li>助教與活動執行經驗（巡迴、教學、控場）</li><li>數據與成果（觸及人數、帶班時數、學員作品）</li><li>證書＋推薦信</li></ul><p>這些上 LinkedIn／履歷，一眼就看得懂、說得出口、拿得出證據。</p></div></details>
+          <details class="group rounded-xl border border-[var(--divider)] p-5"><summary class="cursor-pointer font-semibold">可以請假或中途退出？</summary><p class="mt-2 text-[var(--muted)]">可以請假，但請事前說、讓團隊好安排。若因個人因素要退出，我們理解！離開前我們會協助你把工作好好交接，彼此尊重、祝你一路順風。</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PROTECTION：藍底 -->
+  
+
+  <!-- CTA：大按鈕 -->
+  <section id="cta-bottom" class="section-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16 grid place-items-center">
+      <a href="https://tally.so/r/meWY5k" target="_blank" class="btn glow-btn cta-big rounded-2xl font-black">立即報名！</a>
+    </div>
+  </section>
+
+  <!-- FOOTER：白底 -->
+  <footer class="border-t border-gray-200 section-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-8 text-sm text-[var(--muted)] flex flex-col items-center gap-2">
+      <div>© <span id="year"></span> nuva. All rights reserved.</div>
+      <div class="text-xs">最終解釋權：nuva 得視實際情況調整並公告。</div>
+      <div class="flex gap-4 mt-1">
+        <a href="#apply" class="hover:text-[var(--blue)]">報名資訊</a>
+        <a href="#faq" class="hover:text-[var(--blue)]">FAQ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 中英文之間自動加入空格（簡易版）
+    // 在 CJK 與 ASCII 字元交界處插入窄空白（\u2009）
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    const nodes=[]; let n; while(n=walker.nextNode()) nodes.push(n);
+    nodes.forEach(node=>{
+      const t=node.nodeValue;
+      if(!t || !t.trim()) return;
+      const spaced=t
+        .replace(/([\u4E00-\u9FFF])([A-Za-z0-9#@&\-\+]+)/g, '$1\u2009$2')
+        .replace(/([A-Za-z0-9#@&\-\+]+)([\u4E00-\u9FFF])/g, '$1\u2009$2');
+      if(spaced!==t) node.nodeValue=spaced;
+    });
+  </script>
+<script>
+  // 時間軸 scrollspy：依距離中心點計算可見度（--vis），同時標記最接近者為 active
+  (function(){
+    const items = Array.from(document.querySelectorAll('.timeline .t-item'));
+    if(!items.length) return;
+    const clamp=(v,min,max)=>v<min?min:(v>max?max:v);
+    function update(){
+      const targetY = window.innerHeight * 0.4; // 與 .t-marker 的 top 對齊
+      let best=null,dist=Infinity;
+      for(const it of items){
+        const r = it.getBoundingClientRect();
+        const c = r.top + r.height/2;
+        const d = Math.abs(c - targetY);
+        const range = Math.max(240, window.innerHeight*0.5); // 漸變範圍
+        const vis = clamp(1 - d / range, 0, 1);
+        it.style.setProperty('--vis', vis.toFixed(3));
+        if(d < dist){dist=d; best=it;}
+      }
+      items.forEach(it=>it.classList.toggle('active', it===best));
+    }
+    update();
+    window.addEventListener('scroll', update, {passive:true});
+    window.addEventListener('resize', update);
+  })();
+</script>
+<script>
+  // 招募倒數：每秒更新至 9/24 12:00（台北）
+  (function(){
+    const el = document.getElementById('countdown');
+    if(!el) return;
+    const now = new Date();
+    let year = now.getFullYear();
+    let target = new Date(`${year}-09-24T12:00:00+08:00`);
+    if(now > target) target = new Date(`${year+1}-09-24T12:00:00+08:00`);
+    function pad(n){return String(n).padStart(2,'0');}
+    function render(){
+      const diff = target - new Date();
+      if(diff <= 0){ el.textContent = '徵件已截止'; return; }
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor(diff%86400000/3600000);
+      const m = Math.floor(diff%3600000/60000);
+      const s = Math.floor(diff%60000/1000);
+      el.textContent = `${d} 天 ${pad(h)} 小時 ${pad(m)} 分 ${pad(s)} 秒`;
+      setTimeout(render, 1000 - (Date.now()%1000));
+    }
+    render();
+  })();
+</script>
+<audio id="bgm" src="SOURWAH - Made for Life.wav" loop playsinline></audio>
+<div id="audioCtrl" class="audio-toggle" title="背景音樂">🔇</div>
+<script>
+  // 背景音樂自動循環＋切換
+  (function(){
+    const audio = document.getElementById('bgm');
+    const ctrl = document.getElementById('audioCtrl');
+    if(!audio||!ctrl) return;
+    audio.volume = 0.6; audio.muted = true; // 先靜音以利自動播放
+    const setIcon = ()=>{ ctrl.textContent = (!audio.paused && !audio.muted) ? '🔊' : '🔇'; };
+    audio.play().catch(()=>{}).finally(setIcon);
+    ctrl.addEventListener('click',()=>{
+      if(audio.muted || audio.paused){ audio.muted=false; audio.play().catch(()=>{}); }
+      else { audio.muted=true; audio.pause(); }
+      setIcon();
+    });
+  })();
+</script>
+</body>
+</html>
