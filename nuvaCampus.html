@@ -161,6 +161,12 @@
 
     /* 音樂切換按鈕 */
     .audio-toggle{position:fixed;right:1rem;bottom:1rem;width:44px;height:44px;border-radius:9999px;background:rgba(255,255,255,.9);border:1px solid var(--divider);display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.12);cursor:pointer;z-index:50}
+  
+    /* 只顯示目前節點的大日期 */
+    .timeline .t-item:not(.active) .t-date{opacity:.18 !important; filter:saturate(65%)}
+    .timeline .t-item.active .t-date{opacity:1 !important}
+    /* 導航：右上主色按鈕維持白字 */
+    .nav a.btn-primary{color:#fff !important}
   </style>
 </head>
 <body class="spaced">
@@ -194,7 +200,7 @@
         <span class="inline-flex items-center gap-2 chip px-3 py-1 rounded-full text-xs font-medium">
           114 學年度 nuva 校園大使 · 第一屆
         </span>
-        <h1 class="mt-4 text-4xl sm:text-5xl font-black tracking-tight">校園大使計畫：成為 AI 新世代的領航者</h1>
+        <h1 class="mt-4 text-4xl sm:text-5xl font-black tracking-tight">AI 新世代思維覺醒 — nuva 校園大使計畫</h1>
         <p class="mt-4 text-lg text-[var(--muted)]">加入 nuva 校園大使，接受 <span class="font-semibold text-[var(--blue)]">AI 與軟實力培訓</span>，參與全台校園巡迴，擔任 <span class="font-semibold text-[var(--blue)]">AI 戰鬥營助教</span>。用一年打造你的影響力旅程。</p>
         <div class="mt-8 flex flex-col sm:flex-row gap-3 actions sm:justify-start items-center sm:items-stretch">
           <a href="https://tally.so/r/meWY5k" target="_blank" class="btn btn-primary px-6 py-3 rounded-2xl font-bold">立即報名</a>
@@ -352,7 +358,7 @@
       <div class="grid lg:grid-cols-1 gap-10">
         <div>
           <h2 class="section-title text-3xl font-black">報名資格</h2>
-          <ol class="mt-6 grid sm:grid-cols-2 gap-8 list-decimal pl-6 text-3xl font-extrabold opacity-95">
+          <ol class="mt-6 grid sm:grid-cols-2 gap-8 list-decimal pl-6 text-2xl font-medium opacity-95">
             <li>現在是大學生</li>
             <li>確認第一條符合</li>
           </ol>
@@ -393,7 +399,7 @@
 
   <!-- CTA：大按鈕 -->
   <section id="cta-bottom" class="section-white">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-16 grid place-items-center">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8 py-12 grid place-items-center">
       <a href="https://tally.so/r/meWY5k" target="_blank" class="btn glow-btn cta-big rounded-2xl font-black">立即報名！</a>
     </div>
   </section>
